@@ -2,6 +2,10 @@
 
 Welcome to [RedwoodJS](https://redwoodjs.com)!
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fe6f40b1-5720-43eb-9af0-c9d220860d4f/deploy-status)](https://app.netlify.com/sites/cloudcooking/deploys)
+[![Lint and Prettier Check](https://github.com/cloudpartyteam/cloud-cooking/actions/workflows/lint.yml/badge.svg)](https://github.com/cloudpartyteam/cloud-cooking/actions/workflows/lint.yml)
+[![Test](https://github.com/cloudpartyteam/cloud-cooking/actions/workflows/test.yml/badge.svg)](https://github.com/cloudpartyteam/cloud-cooking/actions/workflows/test.yml)
+
 > **Prerequisites**
 >
 > - Redwood requires [Node.js](https://nodejs.org/en/) (>=14.19.x <=16.x) and [Yarn](https://yarnpkg.com/) (>=1.15)

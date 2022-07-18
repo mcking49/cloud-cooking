@@ -1,0 +1,21 @@
+name: Lint and Prettier Check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  run_lint_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: mskelton/setup-yarn@v1
+      - run: yarn && yarn rw lint
+  run_prettier_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: mskelton/setup-yarn@v1
+      - run: yarn && yarn prettier
