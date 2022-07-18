@@ -8,9 +8,66 @@ generator client {
   binaryTargets = "native"
 }
 
+enum RecipeCategory {
+  BREAKFAST
+  DESSERT
+  DINNER
+  LUNCH
+  OTHER
+  SNACK
+}
+
+model Recipe {
+  id               Int                     @id @default(autoincrement())
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  categories       RecipeCategory[]
+  directionGroups  RecipeDirectionGroup[]
+  ingredientGroups RecipeIngredientGroup[]
+  length           Int?
+  name             String
+  recipeImage      RecipeImage?
+  servings         Int?
+  sourceUrl        String?
+  user             User                    @relation(fields: [userId], references: [id])
+  userId           Int                     @unique
+}
+
+model RecipeDirectionGroup {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  directions String[]
+  name       String
+  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId   Int      @unique
+}
+
+model RecipeIngredientGroup {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ingredients String[]
+  name        String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId    Int      @unique
+}
+
+model RecipeImage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId  Int      @unique
+  url       String
+}
+
 model User {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
   firstName String
   lastName  String
+  recipes   Recipe[]
 }
