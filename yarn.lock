@@ -4765,7 +4765,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/auth@npm:2.2.0":
+"@redwoodjs/auth@npm:2.2.0, @redwoodjs/auth@npm:^2.2.0":
   version: 2.2.0
   resolution: "@redwoodjs/auth@npm:2.2.0"
   dependencies:
@@ -25012,6 +25012,7 @@ __metadata:
     "@chakra-ui/storybook-addon": ^4.0.4
     "@emotion/react": ^11
     "@emotion/styled": ^11
+    "@redwoodjs/auth": ^2.2.0
     "@redwoodjs/forms": ^2.2.0
     "@redwoodjs/router": ^2.2.0
     "@redwoodjs/web": ^2.2.0
