@@ -9,7 +9,5 @@
     "prisma.prisma",
     "graphql.vscode-graphql"
   ],
-  "unwantedRecommendations": [
-    "ofhumanbondage.react-proptypes-intellisense",
-  ]
+  "unwantedRecommendations": ["ofhumanbondage.react-proptypes-intellisense"]
 }
