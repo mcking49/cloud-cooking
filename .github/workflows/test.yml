@@ -14,4 +14,4 @@ jobs:
       - uses: mskelton/setup-yarn@v1
       - run: yarn && yarn rw test
         env:
-          TEST_DATABASE_URL: "${{ secrets.TEST_DATABASE_URL }}"
+          TEST_DATABASE_URL: '${{ secrets.TEST_DATABASE_URL }}'
