@@ -3238,6 +3238,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/vidaloka@npm:^4.5.8":
+  version: 4.5.8
+  resolution: "@fontsource/vidaloka@npm:4.5.8"
+  checksum: 4043f7073ad3dc1884b289b56a0e95ed61760ccc9848daaea5fbf30806385d99219d6aa35f927c1e4d47778be631b8fd8efecad6b92c52278980259b6a66f924
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.0.1, @gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -6510,7 +6517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:14.3.0":
+"@testing-library/user-event@npm:14.3.0, @testing-library/user-event@npm:^14.3.0":
   version: 14.3.0
   resolution: "@testing-library/user-event@npm:14.3.0"
   peerDependencies:
@@ -25012,10 +25019,12 @@ __metadata:
     "@chakra-ui/storybook-addon": ^4.0.4
     "@emotion/react": ^11
     "@emotion/styled": ^11
+    "@fontsource/vidaloka": ^4.5.8
     "@redwoodjs/auth": ^2.2.0
     "@redwoodjs/forms": ^2.2.0
     "@redwoodjs/router": ^2.2.0
     "@redwoodjs/web": ^2.2.0
+    "@testing-library/user-event": ^14.3.0
     framer-motion: ^4
     prop-types: 15.8.1
     react: 17.0.2

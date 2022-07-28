@@ -7,14 +7,16 @@ import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
+import '@fontsource/vidaloka/400.css'
 import './index.css'
+import theme from './theme'
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
       <AuthProvider type="dbAuth">
         <ColorModeScript />
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <RedwoodApolloProvider>
             <Routes />
           </RedwoodApolloProvider>

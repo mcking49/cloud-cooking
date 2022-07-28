@@ -14,3 +14,4 @@ api/types/graphql.d.ts
 api/src/lib/generateGraphiQLHeader.*
 .pnp.*
 .yarn
+.coverage
