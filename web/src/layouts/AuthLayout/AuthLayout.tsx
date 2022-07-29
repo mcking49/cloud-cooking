@@ -37,7 +37,7 @@ const AuthLayout: React.FC = ({ children }) => {
         bg="gray.50"
         width={{ base: 'full', md: '50%' }}
         paddingY={10}
-        paddingX={8}
+        paddingX={6}
         roundedTop={{ base: '2xl', md: 'none' }}
         flexGrow={{ base: 1, md: 0 }}
         minWidth={{ md: '540px' }}
