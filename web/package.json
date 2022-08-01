@@ -17,6 +17,8 @@
     "@chakra-ui/react": "^1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/open-sans": "^4.5.10",
+    "@fontsource/pt-sans": "^4.5.9",
     "@fontsource/vidaloka": "^4.5.8",
     "@redwoodjs/auth": "^2.2.0",
     "@redwoodjs/forms": "^2.2.0",

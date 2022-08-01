@@ -3238,6 +3238,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/open-sans@npm:^4.5.10":
+  version: 4.5.10
+  resolution: "@fontsource/open-sans@npm:4.5.10"
+  checksum: fe3da70645cbba1cd4bec995ac7caf7b97b3d9a4e00e0d51052c46b7135c2645e5acf5d152c52d41d87a92952a17e6c1df38c32ccc2a58a8e2481eae0a67c971
+  languageName: node
+  linkType: hard
+
+"@fontsource/pt-sans@npm:^4.5.9":
+  version: 4.5.9
+  resolution: "@fontsource/pt-sans@npm:4.5.9"
+  checksum: 7198721a504e6e93dd67c0e180664f5120f61b80a36eaa64edf5a9d10b5bc2953595313e4433dcac5be2aca02102947cdd3d9217220e7e49c672dbcf707e87f0
+  languageName: node
+  linkType: hard
+
 "@fontsource/vidaloka@npm:^4.5.8":
   version: 4.5.8
   resolution: "@fontsource/vidaloka@npm:4.5.8"
@@ -25019,6 +25033,8 @@ __metadata:
     "@chakra-ui/storybook-addon": ^4.0.4
     "@emotion/react": ^11
     "@emotion/styled": ^11
+    "@fontsource/open-sans": ^4.5.10
+    "@fontsource/pt-sans": ^4.5.9
     "@fontsource/vidaloka": ^4.5.8
     "@redwoodjs/auth": ^2.2.0
     "@redwoodjs/forms": ^2.2.0

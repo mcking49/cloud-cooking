@@ -8,6 +8,9 @@ import FatalErrorPage from 'src/pages/FatalErrorPage'
 import Routes from 'src/Routes'
 
 import '@fontsource/vidaloka/400.css'
+import '@fontsource/open-sans/400.css'
+import '@fontsource/open-sans/600.css'
+import '@fontsource/pt-sans/700.css'
 import './index.css'
 import theme from './theme'
 

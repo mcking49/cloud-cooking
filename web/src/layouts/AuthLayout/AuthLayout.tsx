@@ -25,7 +25,7 @@ const AuthLayout: React.FC = ({ children }) => {
             position="absolute"
             zIndex="banner"
             top={{ base: '44px' }}
-            left={{ base: '24px' }}
+            left={{ base: '24px', sm: '40px' }}
           >
             <Logo />
           </Box>
@@ -33,18 +33,21 @@ const AuthLayout: React.FC = ({ children }) => {
       </Box>
 
       {/* Content */}
-      <Box
+      <Flex
         bg="gray.50"
         width={{ base: 'full', md: '50%' }}
-        paddingY={10}
-        paddingX={6}
+        paddingY={{ base: 10, sm: 12 }}
+        paddingX={{ base: 6, sm: 10, xl: 16, '2xl': 32 }}
         roundedTop={{ base: '2xl', md: 'none' }}
         flexGrow={{ base: 1, md: 0 }}
         minWidth={{ md: '540px' }}
         flexShrink={0}
+        flexDir="column"
+        justifyContent={{ sm: 'flex-start', md: 'center' }}
+        alignItems={{ sm: 'flex-start', md: 'center' }}
       >
         {children}
-      </Box>
+      </Flex>
     </Flex>
   )
 }
