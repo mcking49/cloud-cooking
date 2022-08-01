@@ -48,7 +48,7 @@ const signupFieldNames: readonly (keyof SignupFormValues)[] = [
 ]
 
 const SignupForm = () => {
-  const { isAuthenticated, signUp } = useAuth()
+  const { isAuthenticated, loading, signUp } = useAuth()
   const NameStack = useBreakpointValue({ base: VStack, lg: HStack })
   const toast = useToast()
 
@@ -88,7 +88,7 @@ const SignupForm = () => {
   }
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !loading) {
       navigate(routes.dashboard())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

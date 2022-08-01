@@ -42,7 +42,7 @@ const LOGIN_FIELD_NAMES: readonly (keyof LoginFormValues)[] = [
 ]
 
 const LoginForm = () => {
-  const { isAuthenticated, logIn } = useAuth()
+  const { isAuthenticated, loading, logIn } = useAuth()
   const toast = useToast()
 
   const formMethods = useForm<LoginFormValues>({
@@ -84,11 +84,11 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !loading) {
       navigate(routes.dashboard())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [loading])
 
   return (
     <>
