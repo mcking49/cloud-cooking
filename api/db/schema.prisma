@@ -63,11 +63,15 @@ model RecipeImage {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  firstName String
-  lastName  String
-  recipes   Recipe[]
+  id                  Int       @id @default(autoincrement())
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  email               String    @unique
+  firstName           String
+  hashedPassword      String
+  lastName            String
+  recipes             Recipe[]
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+  salt                String
 }
