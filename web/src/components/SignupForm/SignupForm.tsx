@@ -118,7 +118,10 @@ const SignupForm = () => {
       <Form onSubmit={onSubmit} formMethods={formMethods} mt={6}>
         <VStack spacing={4}>
           <NameStack spacing={4} width="full">
-            <FormControl isInvalid={!!formMethods.formState.errors.firstName}>
+            <FormControl
+              isInvalid={!!formMethods.formState.errors.firstName}
+              isDisabled={formMethods.formState.isSubmitting}
+            >
               <FormLabel as={Label} name="firstName">
                 First Name
               </FormLabel>
@@ -139,7 +142,10 @@ const SignupForm = () => {
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl isInvalid={!!formMethods.formState.errors.lastName}>
+            <FormControl
+              isInvalid={!!formMethods.formState.errors.lastName}
+              isDisabled={formMethods.formState.isSubmitting}
+            >
               <FormLabel as={Label} name="lastName">
                 Last Name
               </FormLabel>
@@ -161,7 +167,10 @@ const SignupForm = () => {
             </FormControl>
           </NameStack>
 
-          <FormControl isInvalid={!!formMethods.formState.errors.username}>
+          <FormControl
+            isInvalid={!!formMethods.formState.errors.username}
+            isDisabled={formMethods.formState.isSubmitting}
+          >
             <FormLabel as={Label} name="username">
               Email Address
             </FormLabel>
@@ -187,7 +196,10 @@ const SignupForm = () => {
             </FormErrorMessage>
           </FormControl>
 
-          <FormControl isInvalid={!!formMethods.formState.errors.password}>
+          <FormControl
+            isInvalid={!!formMethods.formState.errors.password}
+            isDisabled={formMethods.formState.isSubmitting}
+          >
             <FormLabel as={Label} name="password">
               Password
             </FormLabel>
@@ -219,6 +231,7 @@ const SignupForm = () => {
               colorScheme="green"
               width={{ base: '200px', sm: '240px' }}
               mt={4}
+              isLoading={formMethods.formState.isSubmitting}
             >
               Create Account
             </Button>
