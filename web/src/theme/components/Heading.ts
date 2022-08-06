@@ -5,7 +5,7 @@ const Heading: ComponentStyleConfig = {
     h3: {
       fontFamily: 'PT Sans',
       fontWeight: 700,
-      fontSize: '16px',
+      fontSize: '20px',
       lineHeight: '1.2em',
     },
   },
