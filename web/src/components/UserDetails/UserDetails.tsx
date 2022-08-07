@@ -9,7 +9,7 @@ const UserDetails = () => {
 
   return (
     <HStack spacing={4}>
-      <Avatar size="sm" />
+      <Avatar />
 
       <VStack spacing={0} alignItems="flex-start">
         <H3>
