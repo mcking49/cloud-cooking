@@ -7,11 +7,9 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  Hide,
   HStack,
   Input,
   Link,
-  Show,
   Text,
   useToast,
   VStack,
@@ -55,7 +53,7 @@ const LoginForm = () => {
       if (response.error) {
         throw response
       } else {
-        navigate(routes.dashboard())
+        navigate(routes.explore())
 
         toast({
           description: 'Welcome back!',
@@ -85,7 +83,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      navigate(routes.dashboard())
+      navigate(routes.explore())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
@@ -93,22 +91,23 @@ const LoginForm = () => {
   return (
     <>
       {/* Heading section below md */}
-      <Hide above="md">
-        <Heading as="h1" size="xl" fontWeight="normal">
-          Login
-        </Heading>
-      </Hide>
+      <Heading
+        as="h1"
+        size="xl"
+        fontWeight="normal"
+        display={{ base: 'inline-block', md: 'none' }}
+      >
+        Login
+      </Heading>
 
       {/* Heading section above md */}
-      <Show above="md">
-        <HStack>
-          <Heading as="h1" fontFamily="fonts.body" fontWeight={600}>
-            Login to
-          </Heading>
+      <HStack display={{ base: 'none', md: 'flex' }}>
+        <Heading as="h1" fontFamily="fonts.body" fontWeight={600}>
+          Login to
+        </Heading>
 
-          <Logo fontSize={{ base: '36px', xl: '44px' }} />
-        </HStack>
-      </Show>
+        <Logo fontSize={{ base: '36px', xl: '44px' }} />
+      </HStack>
 
       {/* Login Form */}
       <Form onSubmit={onSubmit} formMethods={formMethods} mt={6}>

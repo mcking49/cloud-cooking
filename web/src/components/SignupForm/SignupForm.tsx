@@ -7,11 +7,9 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  Hide,
   HStack,
   Input,
   Link,
-  Show,
   Text,
   useBreakpointValue,
   useToast,
@@ -62,7 +60,7 @@ const SignupForm = () => {
       if (response.error) {
         throw response
       } else {
-        navigate(routes.dashboard())
+        navigate(routes.explore())
 
         toast({
           description: 'Account created!',
@@ -89,7 +87,7 @@ const SignupForm = () => {
 
   useEffect(() => {
     if (isAuthenticated && !loading) {
-      navigate(routes.dashboard())
+      navigate(routes.explore())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -97,22 +95,23 @@ const SignupForm = () => {
   return (
     <>
       {/* Heading section below md */}
-      <Hide above="md">
-        <Heading as="h1" size="xl" fontWeight="normal">
-          Create an account
-        </Heading>
-      </Hide>
+      <Heading
+        as="h1"
+        size="xl"
+        fontWeight="normal"
+        display={{ base: 'inline-block', md: 'none' }}
+      >
+        Create an account
+      </Heading>
 
       {/* Heading section above md */}
-      <Show above="md">
-        <HStack>
-          <Heading as="h1" fontFamily="fonts.body" fontWeight={600}>
-            Welcome to
-          </Heading>
+      <HStack display={{ base: 'none', md: 'flex' }}>
+        <Heading as="h1" fontFamily="fonts.body" fontWeight={600}>
+          Welcome to
+        </Heading>
 
-          <Logo fontSize={{ base: '36px', xl: '44px' }} />
-        </HStack>
-      </Show>
+        <Logo fontSize={{ base: '36px', xl: '44px' }} />
+      </HStack>
 
       {/* Signup Form */}
       <Form onSubmit={onSubmit} formMethods={formMethods} mt={6}>
