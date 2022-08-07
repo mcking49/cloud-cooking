@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import DashboardPage from './DashboardPage'
+import CreateRecipePage from './CreateRecipePage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('DashboardPage', () => {
+describe('CreateRecipePage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<DashboardPage />)
+      render(<CreateRecipePage />)
     }).not.toThrow()
   })
 })
