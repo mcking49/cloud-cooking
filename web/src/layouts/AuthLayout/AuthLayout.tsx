@@ -1,4 +1,4 @@
-import { Box, Flex, Hide } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 import Logo from 'src/components/Logo'
 import Splash from 'src/components/Splash'
@@ -20,16 +20,15 @@ const AuthLayout: React.FC = ({ children }) => {
         <Splash />
 
         {/* Show logo only on mobile */}
-        <Hide above="md">
-          <Box
-            position="absolute"
-            zIndex="banner"
-            top={{ base: '44px' }}
-            left={{ base: '24px', sm: '40px' }}
-          >
-            <Logo />
-          </Box>
-        </Hide>
+        <Box
+          position="absolute"
+          zIndex="banner"
+          top={{ base: '44px' }}
+          left={{ base: '24px', sm: '40px' }}
+          display={{ md: 'none' }}
+        >
+          <Logo />
+        </Box>
       </Box>
 
       {/* Content */}

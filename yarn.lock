@@ -3172,6 +3172,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "@faker-js/faker@npm:7.3.0"
+  checksum: bacced61aea90a793d7fe0525bc68b14b7d3e3a7b2655d9070f5e7d5c74e6e637aa6bfce7a720930ef38017493b1144ee51d4c217afc08981c3e1855cc536198
+  languageName: node
+  linkType: hard
+
 "@fastify/ajv-compiler@npm:^1.0.0":
   version: 1.1.0
   resolution: "@fastify/ajv-compiler@npm:1.1.0"
@@ -21118,6 +21125,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-icons@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "react-icons@npm:4.4.0"
+  peerDependencies:
+    react: "*"
+  checksum: 8daeae11e4b989eebcb97b9fdf3a743607b76b637d2eece309f6274f3a85b9c720313956cfabe220628324abf50b9b01823f65ac9cf71b8a816e440d2fca5293
+  languageName: node
+  linkType: hard
+
 "react-inspector@npm:^5.1.0":
   version: 5.1.1
   resolution: "react-inspector@npm:5.1.1"
@@ -25033,6 +25049,7 @@ __metadata:
     "@chakra-ui/storybook-addon": ^4.0.4
     "@emotion/react": ^11
     "@emotion/styled": ^11
+    "@faker-js/faker": ^7.3.0
     "@fontsource/open-sans": ^4.5.10
     "@fontsource/pt-sans": ^4.5.9
     "@fontsource/vidaloka": ^4.5.8
@@ -25042,9 +25059,11 @@ __metadata:
     "@redwoodjs/web": ^2.2.0
     "@testing-library/user-event": ^14.3.0
     framer-motion: ^4
+    lodash: ^4.17.21
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
+    react-icons: ^4.4.0
   languageName: unknown
   linkType: soft
 

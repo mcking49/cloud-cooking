@@ -3,7 +3,7 @@ const styles = {
     body: {
       background: 'gray.50',
     },
-    'html, body, *': {
+    'html, body': {
       color: 'blue.800',
     },
   },
