@@ -4,9 +4,6 @@ import { render, screen } from '@redwoodjs/testing/web'
 
 import H3 from './H3'
 
-//   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
-
 describe('H3', () => {
   it('renders successfully', () => {
     expect(() => {
