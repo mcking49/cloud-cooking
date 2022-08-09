@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^4.0.4",
-    "@faker-js/faker": "^7.3.0",
+    "@faker-js/faker": "^7.4.0",
     "@testing-library/user-event": "^14.3.0"
   }
 }

@@ -3172,10 +3172,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "@faker-js/faker@npm:7.3.0"
-  checksum: bacced61aea90a793d7fe0525bc68b14b7d3e3a7b2655d9070f5e7d5c74e6e637aa6bfce7a720930ef38017493b1144ee51d4c217afc08981c3e1855cc536198
+"@faker-js/faker@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "@faker-js/faker@npm:7.4.0"
+  checksum: 58bc4c41eb77f7c517dfbbacc6c4a74e873614befde41bc24b20c30337d3e77dab6ff30871ff30fc292f5cb9e746b849aad3c0f66fbcec38cc06e590e009ef13
   languageName: node
   linkType: hard
 
@@ -8379,6 +8379,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
+    "@faker-js/faker": ^7.4.0
     "@redwoodjs/api": ^2.2.0
     "@redwoodjs/graphql-server": ^2.2.0
   languageName: unknown
@@ -25049,7 +25050,7 @@ __metadata:
     "@chakra-ui/storybook-addon": ^4.0.4
     "@emotion/react": ^11
     "@emotion/styled": ^11
-    "@faker-js/faker": ^7.3.0
+    "@faker-js/faker": ^7.4.0
     "@fontsource/open-sans": ^4.5.10
     "@fontsource/pt-sans": ^4.5.9
     "@fontsource/vidaloka": ^4.5.8
