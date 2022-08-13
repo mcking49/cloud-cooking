@@ -4,11 +4,12 @@ import { User } from 'types/graphql'
 
 type FakeUser = Omit<
   User,
-  'createdAt' | 'id' | 'recipes' | 'updatedAt' | 'hashedPassword' | 'salt'
+  'createdAt' | 'recipes' | 'updatedAt' | 'hashedPassword' | 'salt'
 >
 
 export function fakeUser(): FakeUser {
   return {
+    id: faker.datatype.number(),
     email: faker.internet.email(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
