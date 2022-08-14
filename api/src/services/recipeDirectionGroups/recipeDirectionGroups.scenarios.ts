@@ -26,7 +26,7 @@ export function fakeRecipeDirectionGroup(
 
 export const standard = {
   user: {
-    currentUser: (): Prisma.UserCreateArgs => ({
+    me: (): Prisma.UserCreateArgs => ({
       data: {
         email: faker.unique(faker.internet.email),
         firstName: faker.name.firstName(),
@@ -35,7 +35,7 @@ export const standard = {
         salt: faker.internet.password(),
       },
     }),
-    anotherUser: (): Prisma.UserCreateArgs => ({
+    notMe: (): Prisma.UserCreateArgs => ({
       data: {
         email: faker.unique(faker.internet.email),
         firstName: faker.name.firstName(),
@@ -46,52 +46,30 @@ export const standard = {
     }),
   },
   recipe: {
-    myRecipe: (scenario): Prisma.RecipeCreateArgs => ({
+    myRecipeOne: (scenario: StandardScenario): Prisma.RecipeCreateArgs => ({
       data: {
         categories: faker.helpers.arrayElements(
           RECIPE_CATEGORIES,
           faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
         ),
         name: faker.animal.bird(),
-        userId: scenario.user.currentUser.id,
+        userId: scenario.user.me.id,
       },
     }),
-    anotherRecipe: (scenario): Prisma.RecipeCreateArgs => ({
+    notMyRecipeOne: (scenario: StandardScenario): Prisma.RecipeCreateArgs => ({
       data: {
         categories: faker.helpers.arrayElements(
           RECIPE_CATEGORIES,
           faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
         ),
         name: faker.animal.bird(),
-        userId: scenario.user.anotherUser.id,
+        userId: scenario.user.notMe.id,
       },
     }),
   },
   recipeDirectionGroup: {
-    fromMyRecipeOne: (scenario): Prisma.RecipeDirectionGroupCreateArgs => ({
-      data: {
-        directions: [
-          faker.lorem.paragraph(),
-          faker.lorem.paragraph(),
-          faker.lorem.paragraph(),
-        ],
-        name: faker.commerce.productName(),
-        recipeId: scenario.recipe.myRecipe.id,
-      },
-    }),
-    fromMyRecipeTwo: (scenario): Prisma.RecipeDirectionGroupCreateArgs => ({
-      data: {
-        directions: [
-          faker.lorem.paragraph(),
-          faker.lorem.paragraph(),
-          faker.lorem.paragraph(),
-        ],
-        name: faker.commerce.productName(),
-        recipeId: scenario.recipe.myRecipe.id,
-      },
-    }),
-    fromAnotherRecipeOne: (
-      scenario
+    fromMyRecipeOne: (
+      scenario: StandardScenario
     ): Prisma.RecipeDirectionGroupCreateArgs => ({
       data: {
         directions: [
@@ -100,7 +78,33 @@ export const standard = {
           faker.lorem.paragraph(),
         ],
         name: faker.commerce.productName(),
-        recipeId: scenario.recipe.anotherRecipe.id,
+        recipeId: scenario.recipe.myRecipeOne.id,
+      },
+    }),
+    fromMyRecipeTwo: (
+      scenario: StandardScenario
+    ): Prisma.RecipeDirectionGroupCreateArgs => ({
+      data: {
+        directions: [
+          faker.lorem.paragraph(),
+          faker.lorem.paragraph(),
+          faker.lorem.paragraph(),
+        ],
+        name: faker.commerce.productName(),
+        recipeId: scenario.recipe.myRecipeOne.id,
+      },
+    }),
+    fromNotMyRecipeOne: (
+      scenario: StandardScenario
+    ): Prisma.RecipeDirectionGroupCreateArgs => ({
+      data: {
+        directions: [
+          faker.lorem.paragraph(),
+          faker.lorem.paragraph(),
+          faker.lorem.paragraph(),
+        ],
+        name: faker.commerce.productName(),
+        recipeId: scenario.recipe.notMyRecipeOne.id,
       },
     }),
   },

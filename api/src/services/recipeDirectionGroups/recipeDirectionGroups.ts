@@ -2,10 +2,11 @@ import type {
   MutationResolvers,
   QueryResolvers,
   RecipeDirectionGroupResolvers,
+  UpdateRecipeDirectionGroupInput,
 } from 'types/graphql'
 
-import { validateWith } from '@redwoodjs/api'
-import { ForbiddenError } from '@redwoodjs/graphql-server'
+import { validate, validateWith } from '@redwoodjs/api'
+import { ForbiddenError, ValidationError } from '@redwoodjs/graphql-server'
 
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
@@ -51,7 +52,10 @@ export const recipeDirectionGroup = async ({ id }) => {
   requireAuth()
 
   const dbItem = await recipeDirectionGroupWithUser(id)
-  validateWith(() => validateRecipeBelongsToCurrentUser(dbItem))
+
+  if (dbItem?.recipe?.userId !== context.currentUser.id) {
+    return null
+  }
 
   return db.recipeDirectionGroup.findUnique({
     where: {
@@ -65,10 +69,42 @@ export const updateRecipeDirectionGroup: MutationResolvers['updateRecipeDirectio
     requireAuth()
 
     const dbItem = await recipeDirectionGroupWithUser(id)
+
+    // Validate user owns the recipe
     validateWith(() => validateRecipeBelongsToCurrentUser(dbItem))
 
+    const givenKeys = Object.keys(
+      input
+    ) as (keyof UpdateRecipeDirectionGroupInput)[]
+    const sanitisedInput: UpdateRecipeDirectionGroupInput = {}
+
+    // Validates directions
+    if (givenKeys.includes('directions')) {
+      validate(input.directions, 'Directions', { presence: true })
+      validateWith(() => {
+        if (!input.directions || !input.directions.length) {
+          throw new ValidationError('At least 1 direction must be present')
+        }
+      })
+
+      sanitisedInput.directions = input.directions
+    }
+
+    // Validates name
+    if (givenKeys.includes('name')) {
+      validate(input.name, 'Name', {
+        presence: {
+          allowEmptyString: false,
+          allowNull: false,
+          allowUndefined: null,
+        },
+      })
+
+      sanitisedInput.name = input.name
+    }
+
     return db.recipeDirectionGroup.update({
-      data: input,
+      data: sanitisedInput,
       where: { id },
     })
   }
