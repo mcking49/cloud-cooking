@@ -23,45 +23,62 @@ export function fakeRecipe(options: FakeRecipeOptions = {}): CreateRecipeInput {
   }
 }
 
-export const standard = defineScenario<Prisma.RecipeCreateArgs>({
-  recipe: {
-    one: {
+export const standard = {
+  user: {
+    me: (): Prisma.UserCreateArgs => ({
       data: {
-        categories: faker.helpers.arrayElements(
-          RECIPE_CATEGORIES,
-          faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
-        ),
-        name: faker.animal.bird(),
-        user: {
-          create: {
-            email: faker.internet.email(),
-            firstName: faker.name.firstName(),
-            hashedPassword: faker.internet.password(),
-            lastName: faker.name.lastName(),
-            salt: faker.internet.password(),
-          },
-        },
+        email: faker.unique(faker.internet.email),
+        firstName: faker.name.firstName(),
+        hashedPassword: faker.internet.password(),
+        lastName: faker.name.lastName(),
+        salt: faker.internet.password(),
       },
-    },
-    two: {
+    }),
+    notMe: (): Prisma.UserCreateArgs => ({
       data: {
-        categories: faker.helpers.arrayElements(
-          RECIPE_CATEGORIES,
-          faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
-        ),
-        name: faker.animal.bird(),
-        user: {
-          create: {
-            email: faker.internet.email(),
-            firstName: faker.name.firstName(),
-            hashedPassword: faker.internet.password(),
-            lastName: faker.name.lastName(),
-            salt: faker.internet.password(),
-          },
-        },
+        email: faker.unique(faker.internet.email),
+        firstName: faker.name.firstName(),
+        hashedPassword: faker.internet.password(),
+        lastName: faker.name.lastName(),
+        salt: faker.internet.password(),
       },
-    },
+    }),
   },
-})
+  recipe: {
+    myRecipeOne: (scenario: StandardScenario): Prisma.RecipeCreateArgs => ({
+      data: {
+        categories: faker.helpers.arrayElements(
+          RECIPE_CATEGORIES,
+          faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
+        ),
+        name: faker.animal.bird(),
+        userId: scenario.user.me.id,
+      },
+    }),
+    myRecipeTwo: (scenario: StandardScenario): Prisma.RecipeCreateArgs => ({
+      data: {
+        categories: faker.helpers.arrayElements(
+          RECIPE_CATEGORIES,
+          faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
+        ),
+        name: faker.animal.bird(),
+        userId: scenario.user.me.id,
+      },
+    }),
+    notMyRecipeOne: (scenario: StandardScenario): Prisma.RecipeCreateArgs => ({
+      data: {
+        categories: faker.helpers.arrayElements(
+          RECIPE_CATEGORIES,
+          faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
+        ),
+        name: faker.animal.bird(),
+        userId: scenario.user.notMe.id,
+      },
+    }),
+  },
+}
 
-export type StandardScenario = typeof standard
+export type StandardScenario = {
+  user?: Record<string, Prisma.UserCreateArgs['data']>
+  recipe: Record<string, Prisma.RecipeCreateArgs['data']>
+}
