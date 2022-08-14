@@ -18,7 +18,7 @@ export function fakeUser(): FakeUser {
 
 export const standard = defineScenario<Prisma.UserCreateArgs>({
   user: {
-    one: {
+    me: {
       data: {
         email: faker.internet.email(),
         firstName: faker.name.firstName(),
@@ -27,7 +27,7 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
         salt: faker.internet.password(),
       },
     },
-    two: {
+    notMe: {
       data: {
         email: faker.internet.email(),
         firstName: faker.name.firstName(),

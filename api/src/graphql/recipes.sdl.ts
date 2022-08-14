@@ -44,7 +44,6 @@ export const schema = gql`
     name: String
     servings: Int
     sourceUrl: String
-    userId: Int
   }
 
   type Mutation {
