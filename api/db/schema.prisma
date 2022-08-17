@@ -26,7 +26,7 @@ model Recipe {
   ingredientGroups RecipeIngredientGroup[]
   length           Int?
   name             String
-  recipeImage      RecipeImage[]
+  recipeImages     RecipeImage[]
   servings         Int?
   sourceUrl        String?
   user             User                    @relation(fields: [userId], references: [id])
