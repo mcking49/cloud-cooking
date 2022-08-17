@@ -26,7 +26,7 @@ model Recipe {
   ingredientGroups RecipeIngredientGroup[]
   length           Int?
   name             String
-  recipeImage      RecipeImage?
+  recipeImage      RecipeImage[]
   servings         Int?
   sourceUrl        String?
   user             User                    @relation(fields: [userId], references: [id])
@@ -58,7 +58,7 @@ model RecipeImage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   recipe    Recipe   @relation(fields: [recipeId], references: [id])
-  recipeId  Int      @unique
+  recipeId  Int
   url       String
 }
 
