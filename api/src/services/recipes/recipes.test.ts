@@ -137,7 +137,12 @@ describe('recipes', () => {
 
       mockCurrentUser(currentUser)
 
-      const newRecipe = fakeRecipe({ userId: currentUser.id })
+      const newRecipe = fakeRecipe({
+        userId: currentUser.id,
+        withLength: true,
+        withServings: true,
+        withSourceUrl: true,
+      })
 
       const result = await createRecipe({ input: newRecipe })
 
@@ -145,6 +150,7 @@ describe('recipes', () => {
       expect(result.length).toEqual(newRecipe.length)
       expect(result.name).toEqual(newRecipe.name)
       expect(result.servings).toEqual(newRecipe.servings)
+      expect(result.sourceUrl).toEqual(newRecipe.sourceUrl)
       expect(result.userId).toEqual(newRecipe.userId)
     })
 

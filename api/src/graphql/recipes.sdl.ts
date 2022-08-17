@@ -8,7 +8,7 @@ export const schema = gql`
     ingredientGroups: [RecipeIngredientGroup]!
     length: Int
     name: String!
-    recipeImage: RecipeImage
+    recipeImages: [RecipeImage]!
     servings: Int
     sourceUrl: String
     user: User!
@@ -31,9 +31,9 @@ export const schema = gql`
 
   input CreateRecipeInput {
     categories: [RecipeCategory]!
-    length: Int!
+    length: Int
     name: String!
-    servings: Int!
+    servings: Int
     sourceUrl: String
     userId: Int!
   }

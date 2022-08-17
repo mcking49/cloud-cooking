@@ -1,4 +1,5 @@
 import type {
+  CreateRecipeInput,
   MutationResolvers,
   QueryResolvers,
   RecipeCategory,
@@ -50,6 +51,8 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
 }) => {
   requireAuth()
 
+  const givenKeys = Object.keys(input) as (keyof CreateRecipeInput)[]
+
   // Validate categories
   validate(input.categories, 'Categories', { presence: true })
   validateWith(() => {
@@ -67,12 +70,14 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
   })
 
   // Validate length
-  validate(input.length, 'Length', { presence: true })
-  validateWith(() => {
-    if (typeof input.length !== 'number') {
-      throw new ValidationError('Length must be a number')
-    }
-  })
+  if (givenKeys.includes('length')) {
+    validate(input.length, 'Length', { presence: true })
+    validateWith(() => {
+      if (typeof input.length !== 'number') {
+        throw new ValidationError('Length must be a number')
+      }
+    })
+  }
 
   // Validate name
   validate(input.name, 'Name', {
@@ -89,15 +94,17 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
   })
 
   // Validate servings
-  validate(input.servings, 'Servings', { presence: true })
-  validateWith(() => {
-    if (typeof input.servings !== 'number') {
-      throw new ValidationError('Servings must be a number')
-    }
-  })
+  if (givenKeys.includes('servings')) {
+    validate(input.servings, 'Servings', { presence: true })
+    validateWith(() => {
+      if (typeof input.servings !== 'number') {
+        throw new ValidationError('Servings must be a number')
+      }
+    })
+  }
 
   // Validates sourceURL
-  if (input.sourceUrl) {
+  if (givenKeys.includes('sourceUrl')) {
     validate(input.sourceUrl, 'Source URL', {
       presence: {
         allowEmptyString: true,
@@ -268,8 +275,8 @@ export const Recipe: RecipeResolvers = {
     db.recipe.findUnique({ where: { id: root.id } }).directionGroups(),
   ingredientGroups: (_obj, { root }) =>
     db.recipe.findUnique({ where: { id: root.id } }).ingredientGroups(),
-  recipeImage: (_obj, { root }) =>
-    db.recipe.findUnique({ where: { id: root.id } }).recipeImage(),
+  recipeImages: (_obj, { root }) =>
+    db.recipe.findUnique({ where: { id: root.id } }).recipeImages(),
   user: (_obj, { root }) =>
     db.recipe.findUnique({ where: { id: root.id } }).user(),
 }

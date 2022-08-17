@@ -6,21 +6,36 @@ import { RECIPE_CATEGORIES } from './recipes'
 
 interface FakeRecipeOptions {
   userId?: number
+  withLength?: boolean
+  withServings?: boolean
+  withSourceUrl?: boolean
 }
 
 export function fakeRecipe(options: FakeRecipeOptions = {}): CreateRecipeInput {
   const userId = options.userId ?? faker.datatype.number()
 
-  return {
+  const result: CreateRecipeInput = {
     categories: faker.helpers.arrayElements(
       RECIPE_CATEGORIES,
       faker.datatype.number({ min: 1, max: RECIPE_CATEGORIES.length })
     ),
-    length: faker.datatype.number({ min: 10, max: 120 }),
     name: faker.animal.bird(),
-    servings: faker.datatype.number({ min: 1, max: 12 }),
     userId,
   }
+
+  if (options.withLength) {
+    result.length = faker.datatype.number({ min: 10, max: 120 })
+  }
+
+  if (options.withServings) {
+    result.servings = faker.datatype.number({ min: 1, max: 12 })
+  }
+
+  if (options.withSourceUrl) {
+    result.sourceUrl = faker.internet.url()
+  }
+
+  return result
 }
 
 export const standard = {
