@@ -82,7 +82,7 @@ const SideMenuLayout: React.FC = ({ children }) => {
           flexGrow={0}
           height="full"
           background="white"
-          shadow="sideNav"
+          shadow="navMenu"
           zIndex={1}
           display={{ base: 'none', xl: 'block' }}
         >
