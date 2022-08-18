@@ -11,8 +11,8 @@ import { ForbiddenError, ValidationError } from '@redwoodjs/graphql-server'
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
-const validateRecipeBelongsToCurrentUser = (item) => {
-  if (item && item.recipe.userId !== context.currentUser.id) {
+const validateRecipeBelongsToCurrentUser = (record) => {
+  if (record && record.recipe.userId !== context.currentUser.id) {
     throw new ForbiddenError("You don't have permission to do that")
   }
 }
@@ -51,9 +51,9 @@ export const recipeDirectionGroups: QueryResolvers['recipeDirectionGroups'] =
 export const recipeDirectionGroup = async ({ id }) => {
   requireAuth()
 
-  const dbItem = await recipeDirectionGroupWithUser(id)
+  const record = await recipeDirectionGroupWithUser(id)
 
-  if (dbItem?.recipe?.userId !== context.currentUser.id) {
+  if (record?.recipe?.userId !== context.currentUser.id) {
     return null
   }
 
@@ -68,10 +68,10 @@ export const updateRecipeDirectionGroup: MutationResolvers['updateRecipeDirectio
   async ({ id, input }) => {
     requireAuth()
 
-    const dbItem = await recipeDirectionGroupWithUser(id)
+    const record = await recipeDirectionGroupWithUser(id)
 
     // Validate user owns the recipe
-    validateWith(() => validateRecipeBelongsToCurrentUser(dbItem))
+    validateWith(() => validateRecipeBelongsToCurrentUser(record))
 
     const givenKeys = Object.keys(
       input
@@ -96,7 +96,7 @@ export const updateRecipeDirectionGroup: MutationResolvers['updateRecipeDirectio
         presence: {
           allowEmptyString: false,
           allowNull: false,
-          allowUndefined: null,
+          allowUndefined: false,
         },
       })
 
@@ -113,8 +113,8 @@ export const deleteRecipeDirectionGroup: MutationResolvers['deleteRecipeDirectio
   async ({ id }) => {
     requireAuth()
 
-    const dbItem = await recipeDirectionGroupWithUser(id)
-    validateWith(() => validateRecipeBelongsToCurrentUser(dbItem))
+    const record = await recipeDirectionGroupWithUser(id)
+    validateWith(() => validateRecipeBelongsToCurrentUser(record))
 
     return db.recipeDirectionGroup.delete({
       where: { id },
