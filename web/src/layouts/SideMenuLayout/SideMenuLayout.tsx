@@ -22,7 +22,7 @@ import SideMenuNav from './SideMenuNav'
 
 import { SideMenuLayoutProvider } from '.'
 
-const SideMenuLayout: React.FC = ({ children }) => {
+export const SideMenuLayout: React.FC = ({ children }) => {
   const headerRef = useRef<HTMLDivElement>()
   const navMenu = useDisclosure()
 
@@ -155,5 +155,3 @@ const SideMenuLayout: React.FC = ({ children }) => {
     </SideMenuLayoutProvider>
   )
 }
-
-export default SideMenuLayout

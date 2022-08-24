@@ -1,17 +1,10 @@
-import { useBreakpointValue } from '@chakra-ui/react'
-
 import { Private, Route, Router, Set } from '@redwoodjs/router'
 
-import AuthLayout from './layouts/AuthLayout/AuthLayout'
-import EditRecipeMobileLayout from './layouts/EditRecipeMobileLayout/EditRecipeMobileLayout'
-import SideMenuLayout from './layouts/SideMenuLayout/SideMenuLayout'
+import AuthLayout from './layouts/AuthLayout'
+import EditRecipeLayout from './layouts/EditRecipeLayout'
+import { SideMenuLayout } from './layouts/SideMenuLayout'
 
 const Routes = () => {
-  const createRecipeLayout = useBreakpointValue({
-    base: EditRecipeMobileLayout,
-    xl: SideMenuLayout,
-  })
-
   return (
     <Router>
       <Private unauthenticated="login" wrap={SideMenuLayout}>
@@ -19,7 +12,7 @@ const Routes = () => {
         <Route path="/favourites" page={FavouritesPage} name="favourites" />
       </Private>
 
-      <Private unauthenticated="login" wrap={createRecipeLayout}>
+      <Private unauthenticated="login" wrap={EditRecipeLayout}>
         <Route path="/create-recipe" page={CreateRecipePage} name="createRecipe" />
       </Private>
 
