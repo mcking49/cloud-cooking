@@ -5,6 +5,7 @@ export const schema = gql`
     updatedAt: DateTime!
     email: String!
     firstName: String!
+    fullName: String
     hashedPassword: String!
     lastName: String!
     recipes: [Recipe]!

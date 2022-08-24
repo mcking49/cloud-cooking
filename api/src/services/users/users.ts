@@ -67,6 +67,7 @@ export const updateUser: MutationResolvers['updateUser'] = async ({
 }
 
 export const User: UserResolvers = {
+  fullName: (_obj, { root }) => root.firstName + root.lastName,
   recipes: (_obj, { root }) =>
     db.user.findUnique({ where: { id: root.id } }).recipes(),
 }
