@@ -14,8 +14,8 @@ const EditRecipeHeader = ({ children }: Props) => {
       {({ headerRef }) => (
         <Portal appendToParentPortal={false} containerRef={headerRef}>
           <Flex
-            py={4}
-            px={6}
+            py={3}
+            px={4}
             shadow="navMenu"
             justifyContent="space-between"
             alignItems="center"

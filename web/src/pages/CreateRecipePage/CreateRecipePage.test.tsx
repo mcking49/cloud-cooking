@@ -1,14 +1,26 @@
-import { render } from '@redwoodjs/testing/web'
+import { render, screen } from '@redwoodjs/testing/web'
+
+import EditRecipeMobileLayout from 'src/layouts/EditRecipeMobileLayout/EditRecipeMobileLayout'
 
 import CreateRecipePage from './CreateRecipePage'
-
-//   Improve this test with help from the Redwood Testing Doc:
-//   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
 describe('CreateRecipePage', () => {
   it('renders successfully', () => {
     expect(() => {
       render(<CreateRecipePage />)
     }).not.toThrow()
+  })
+
+  it('should have a header inside the mobile layout', () => {
+    render(
+      <EditRecipeMobileLayout>
+        <CreateRecipePage />
+      </EditRecipeMobileLayout>
+    )
+
+    expect(screen.getByText('Cloud')).toBeInTheDocument()
+    expect(screen.getByText('Cooking.')).toBeInTheDocument()
+    expect(screen.getByText('Save')).toBeInTheDocument()
+    expect(screen.getByText('Cancel')).toBeInTheDocument()
   })
 })
