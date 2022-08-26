@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 
 // Foundational style overrides
+import Accordion from './components/Accordion'
 import Button from './components/Button'
 import Form from './components/Form'
 import FormLabel from './components/FormLabel'
@@ -17,6 +18,7 @@ import styles from './foundations/styles'
 const overrides = {
   colors,
   components: {
+    Accordion,
     Button,
     Form,
     FormLabel,
