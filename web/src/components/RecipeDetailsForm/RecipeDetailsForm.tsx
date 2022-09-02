@@ -12,7 +12,7 @@ import {
 import { capitalize } from 'lodash/fp'
 import type { CreateRecipeInput } from 'types/graphql'
 
-import { Label, TextField, useFormContext } from '@redwoodjs/forms'
+import { Label, NumberField, TextField, useFormContext } from '@redwoodjs/forms'
 
 import { RECIPE_CATEGORIES } from 'src/lib/constants'
 
@@ -82,8 +82,27 @@ const RecipeDetailsForm = () => {
         </FormLabel>
 
         <HStack>
-          <Input as={TextField} name="length" />
+          <Input as={NumberField} name="length" />
           <Text>mins</Text>
+        </HStack>
+      </FormControl>
+
+      <FormControl
+        isInvalid={!!formState.errors.servings}
+        isDisabled={formState.isSubmitting}
+      >
+        <FormLabel as={Label} name="servings">
+          <HStack>
+            <Text>Servings</Text>
+            <Text variant="caption" color="gray.400">
+              (optional)
+            </Text>
+          </HStack>
+        </FormLabel>
+
+        <HStack>
+          <Input as={NumberField} name="servings" />
+          <Text>people</Text>
         </HStack>
       </FormControl>
     </VStack>
