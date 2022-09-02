@@ -20,4 +20,8 @@ describe('RecipeDetailsForm', () => {
   it('should have a category field', () => {
     expect(screen.getByText('Category')).toBeInTheDocument()
   })
+
+  it('should have a length field', () => {
+    expect(screen.getByText('Length')).toBeInTheDocument()
+  })
 })

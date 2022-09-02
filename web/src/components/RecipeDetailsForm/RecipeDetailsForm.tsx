@@ -2,8 +2,10 @@ import {
   Box,
   FormControl,
   FormLabel,
+  HStack,
   Input,
   SimpleGrid,
+  Text,
   useCheckboxGroup,
   VStack,
 } from '@chakra-ui/react'
@@ -65,6 +67,25 @@ const RecipeDetailsForm = () => {
           ))}
         </SimpleGrid>
       </Box>
+
+      <FormControl
+        isInvalid={!!formState.errors.length}
+        isDisabled={formState.isSubmitting}
+      >
+        <FormLabel as={Label} name="length">
+          <HStack>
+            <Text>Length</Text>
+            <Text variant="caption" color="gray.400">
+              (optional)
+            </Text>
+          </HStack>
+        </FormLabel>
+
+        <HStack>
+          <Input as={TextField} name="length" />
+          <Text>mins</Text>
+        </HStack>
+      </FormControl>
     </VStack>
   )
 }
