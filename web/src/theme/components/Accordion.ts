@@ -22,6 +22,7 @@ const Accordion: Partial<ComponentMultiStyleConfig> = {
       borderColor: 'gray.100',
       borderTop: 'none',
       borderBottomRadius: '8px',
+      padding: 4,
     },
   },
 }

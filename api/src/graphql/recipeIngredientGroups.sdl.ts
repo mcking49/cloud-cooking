@@ -16,7 +16,7 @@ export const schema = gql`
   input CreateRecipeIngredientGroupInput {
     ingredients: [String]!
     name: String!
-    recipeId: Int!
+    recipeId: Int
   }
 
   input UpdateRecipeIngredientGroupInput {

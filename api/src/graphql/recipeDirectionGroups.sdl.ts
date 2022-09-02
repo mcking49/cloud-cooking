@@ -16,7 +16,7 @@ export const schema = gql`
   input CreateRecipeDirectionGroupInput {
     directions: [String]!
     name: String!
-    recipeId: Int!
+    recipeId: Int
   }
 
   input UpdateRecipeDirectionGroupInput {

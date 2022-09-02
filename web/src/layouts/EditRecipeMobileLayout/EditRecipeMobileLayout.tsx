@@ -10,7 +10,9 @@ const EditRecipeMobileLayout: React.FC = ({ children }) => {
     <EditRecipeLayoutProvider value={{ headerRef }}>
       <Box ref={headerRef} />
 
-      {children}
+      <Box width="full" height="full" paddingY={4} paddingX={5}>
+        {children}
+      </Box>
     </EditRecipeLayoutProvider>
   )
 }

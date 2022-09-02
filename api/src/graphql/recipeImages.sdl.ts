@@ -13,7 +13,7 @@ export const schema = gql`
   }
 
   input CreateRecipeImageInput {
-    recipeId: Int!
+    recipeId: Int
     url: String!
   }
 
