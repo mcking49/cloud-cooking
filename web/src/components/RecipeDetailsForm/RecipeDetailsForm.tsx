@@ -105,6 +105,22 @@ const RecipeDetailsForm = () => {
           <Text>people</Text>
         </HStack>
       </FormControl>
+
+      <FormControl
+        isInvalid={!!formState.errors.recipeImages}
+        isDisabled={formState.isSubmitting}
+      >
+        <FormLabel as={Label} name="recipeImages">
+          <HStack>
+            <Text>Photo</Text>
+            <Text variant="caption" color="gray.400">
+              (optional)
+            </Text>
+          </HStack>
+        </FormLabel>
+
+        {/* TODO: select and upload photo */}
+      </FormControl>
     </VStack>
   )
 }

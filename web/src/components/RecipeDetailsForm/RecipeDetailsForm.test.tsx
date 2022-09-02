@@ -28,4 +28,8 @@ describe('RecipeDetailsForm', () => {
   it('should have a servings field', () => {
     expect(screen.getByText('Servings')).toBeInTheDocument()
   })
+
+  it('should have a recipeImages field', () => {
+    expect(screen.getByText('Photo')).toBeInTheDocument()
+  })
 })
