@@ -41,6 +41,7 @@ const defaultForm: CreateRecipeInput = {
 const RecipeForm = () => {
   const formMethods = useForm<CreateRecipeInput>({
     defaultValues: defaultForm,
+    mode: 'onBlur',
   })
 
   const watchForm = formMethods.watch()

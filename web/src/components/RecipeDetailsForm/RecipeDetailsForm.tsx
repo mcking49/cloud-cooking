@@ -121,6 +121,29 @@ const RecipeDetailsForm = () => {
 
         {/* TODO: select and upload photo */}
       </FormControl>
+
+      <FormControl
+        isInvalid={!!formState.errors.sourceUrl}
+        isDisabled={formState.isSubmitting}
+      >
+        <FormLabel as={Label} name="sourceUrl">
+          <HStack>
+            <Text>Source Link</Text>
+            <Text variant="caption" color="gray.400">
+              (optional)
+            </Text>
+          </HStack>
+        </FormLabel>
+
+        <Input
+          as={TextField}
+          name="sourceUrl"
+          validation={{
+            pattern:
+              /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+          }}
+        />
+      </FormControl>
     </VStack>
   )
 }

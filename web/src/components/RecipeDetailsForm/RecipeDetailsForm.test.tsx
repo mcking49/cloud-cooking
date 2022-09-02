@@ -32,4 +32,8 @@ describe('RecipeDetailsForm', () => {
   it('should have a recipeImages field', () => {
     expect(screen.getByText('Photo')).toBeInTheDocument()
   })
+
+  it('should have a sourceUrl field', () => {
+    expect(screen.getByText('Source Link')).toBeInTheDocument()
+  })
 })
