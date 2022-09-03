@@ -57,8 +57,8 @@ model RecipeImage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  recipe    Recipe   @relation(fields: [recipeId], references: [id])
-  recipeId  Int
+  recipe    Recipe?  @relation(fields: [recipeId], references: [id])
+  recipeId  Int?
   url       String
 }
 
