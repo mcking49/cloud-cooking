@@ -107,10 +107,10 @@ const RecipeDetailsForm = () => {
       </FormControl>
 
       <FormControl
-        isInvalid={!!formState.errors.recipeImages}
+        isInvalid={!!formState.errors.recipeImageIds}
         isDisabled={formState.isSubmitting}
       >
-        <FormLabel as={Label} name="recipeImages">
+        <FormLabel as={Label} name="recipeImageIds">
           <HStack>
             <Text>Photo</Text>
             <Text variant="caption" color="gray.400">

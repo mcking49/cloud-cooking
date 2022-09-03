@@ -3,8 +3,8 @@ export const schema = gql`
     id: Int!
     createdAt: DateTime!
     updatedAt: DateTime!
-    recipe: Recipe!
-    recipeId: Int!
+    recipe: Recipe
+    recipeId: Int
     url: String!
   }
 
@@ -13,12 +13,11 @@ export const schema = gql`
   }
 
   input CreateRecipeImageInput {
-    recipeId: Int
     url: String!
   }
 
   input UpdateRecipeImageInput {
-    url: String
+    recipeId: Int!
   }
 
   type Mutation {

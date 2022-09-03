@@ -36,7 +36,7 @@ export const schema = gql`
     servings: Int
     sourceUrl: String
     userId: Int
-    recipeImages: [CreateRecipeImageInput!]!
+    recipeImageIds: [Int]
     directionGroups: [CreateRecipeDirectionGroupInput!]!
     ingredientGroups: [CreateRecipeIngredientGroupInput!]!
   }

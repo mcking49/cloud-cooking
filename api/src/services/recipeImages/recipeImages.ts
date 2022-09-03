@@ -2,14 +2,15 @@ import type {
   MutationResolvers,
   QueryResolvers,
   RecipeImageResolvers,
-  UpdateRecipeImageInput,
 } from 'types/graphql'
 
-import { validate, validateWith } from '@redwoodjs/api'
+import { ServiceValidationError, validate, validateWith } from '@redwoodjs/api'
 import { ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
+
+import { recipe } from '../recipes/recipes'
 
 function validateUserOwnsRecipe(recipeImage) {
   if (recipeImage && recipeImage.recipe.userId !== context.currentUser.id) {
@@ -49,20 +50,6 @@ export const createRecipeImage: MutationResolvers['createRecipeImage'] =
   async ({ input }) => {
     requireAuth()
 
-    validate(input.recipeId, 'Recipe Id', { presence: true })
-
-    // Validate user owns the recipe
-    const recipeRecord = await db.recipe.findUnique({
-      where: { id: input.recipeId },
-      select: { userId: true },
-    })
-
-    validateWith(() => {
-      if (!recipeRecord || recipeRecord.userId !== context.currentUser.id) {
-        throw new ForbiddenError("You don't have permission to do that")
-      }
-    })
-
     validate(input.url, 'Url', {
       presence: {
         allowEmptyString: false,
@@ -86,33 +73,35 @@ export const updateRecipeImage: MutationResolvers['updateRecipeImage'] =
 
     const record = await recipeImageWithUser(id)
 
+    // Validate image doesn't already belong to a recipe.
     validateWith(() => {
-      if (record.recipe.userId !== context.currentUser.id) {
-        throw new ForbiddenError("You don't have permission to do that")
+      if (record.recipe) {
+        throw new ServiceValidationError(
+          'This image already belongs to a recipe'
+        )
       }
     })
 
-    const givenKeys = Object.keys(input) as (keyof UpdateRecipeImageInput)[]
-    const sanitisedInput: UpdateRecipeImageInput = {}
+    // Validate recipeId input is given
+    validate(input.recipeId, 'Recipe ID', { presence: true })
 
-    if (givenKeys.includes('url')) {
-      validate(input.url, 'Url', {
-        presence: {
-          allowEmptyString: false,
-          allowNull: false,
-          allowUndefined: false,
-        },
-        format: {
-          pattern:
-            /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-        },
-      })
+    const recipeRecord = await recipe({ id: input.recipeId })
 
-      sanitisedInput.url = input.url
-    }
+    // Validate given recipe exists
+    validateWith(() => {
+      if (!recipeRecord) {
+        throw new ServiceValidationError('Given Recipe not found')
+      }
+    })
 
     return db.recipeImage.update({
-      data: sanitisedInput,
+      data: {
+        recipe: {
+          connect: {
+            id: input.recipeId,
+          },
+        },
+      },
       where: { id },
     })
   }

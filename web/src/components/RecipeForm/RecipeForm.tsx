@@ -35,7 +35,7 @@ const defaultForm: CreateRecipeInput = {
     },
   ],
   name: '',
-  recipeImages: [],
+  recipeImageIds: [],
 }
 
 const RecipeForm = () => {
