@@ -24,6 +24,7 @@
     "@redwoodjs/forms": "^2.2.0",
     "@redwoodjs/router": "^2.2.0",
     "@redwoodjs/web": "^2.2.0",
+    "filestack-react": "^4.0.1",
     "framer-motion": "^4",
     "lodash": "^4.17.21",
     "prop-types": "15.8.1",
