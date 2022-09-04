@@ -17,6 +17,7 @@ import { Label, NumberField, TextField, useFormContext } from '@redwoodjs/forms'
 import { RECIPE_CATEGORIES } from 'src/lib/constants'
 
 import CategoryOption from '../CategoryOption'
+import ImageFormField from '../ImageFormField'
 
 const RecipeDetailsForm = () => {
   const { formState } = useFormContext<CreateRecipeInput>()
@@ -106,21 +107,7 @@ const RecipeDetailsForm = () => {
         </HStack>
       </FormControl>
 
-      <FormControl
-        isInvalid={!!formState.errors.recipeImageIds}
-        isDisabled={formState.isSubmitting}
-      >
-        <FormLabel as={Label} name="recipeImageIds">
-          <HStack>
-            <Text>Photo</Text>
-            <Text variant="caption" color="gray.400">
-              (optional)
-            </Text>
-          </HStack>
-        </FormLabel>
-
-        {/* TODO: select and upload photo */}
-      </FormControl>
+      <ImageFormField />
 
       <FormControl
         isInvalid={!!formState.errors.sourceUrl}
