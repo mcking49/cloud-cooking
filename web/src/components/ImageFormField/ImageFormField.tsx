@@ -1,5 +1,7 @@
-import { FormControl, FormLabel, HStack, Text } from '@chakra-ui/react'
-import type { CreateRecipeInput } from 'types/graphql'
+import { useState } from 'react'
+
+import { FormControl, FormLabel, HStack, Image, Text } from '@chakra-ui/react'
+import type { CreateRecipeInput, RecipeImage } from 'types/graphql'
 
 import { Label, useFormContext } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
@@ -10,6 +12,7 @@ const CREATE_RECIPE_IMAGE = gql`
   mutation CreateRecipeImage($input: CreateRecipeImageInput!) {
     createRecipeImage(input: $input) {
       id
+      thumbnail
     }
   }
 `
@@ -17,12 +20,13 @@ const CREATE_RECIPE_IMAGE = gql`
 const ImageFormField = () => {
   const [createRecipeImage] = useMutation(CREATE_RECIPE_IMAGE)
   const { formState, setValue } = useFormContext<CreateRecipeInput>()
+  const [currImage, setCurrImage] = useState<RecipeImage>(null)
 
   const onUploadImage = async (result) => {
     const imageUrl: string = result?.filesUploaded?.[0]?.url
 
     if (imageUrl) {
-      const record = await createRecipeImage({
+      const response = await createRecipeImage({
         variables: {
           input: {
             url: imageUrl,
@@ -30,13 +34,15 @@ const ImageFormField = () => {
         },
       })
 
-      const id = record.data?.createRecipeImage.id
+      const recipeImage: RecipeImage = response.data?.createRecipeImage
 
-      if (id) {
-        setValue('recipeImageIds', [id])
+      if (recipeImage) {
+        setValue('recipeImageIds', [recipeImage.id])
+        setCurrImage(response.data.createRecipeImage)
       }
     }
   }
+
   return (
     <FormControl
       isInvalid={!!formState.errors.recipeImageIds}
@@ -51,7 +57,14 @@ const ImageFormField = () => {
         </HStack>
       </FormLabel>
 
-      <FilePicker accept="image/*" onSuccess={onUploadImage} text="Add Photo" />
+      {currImage && <Image src={currImage.thumbnail} alt="Image thumbnail" />}
+
+      <FilePicker
+        accept="image/*"
+        onSuccess={onUploadImage}
+        text="Add Photo"
+        mode={currImage ? 'replace' : 'first_pick'}
+      />
     </FormControl>
   )
 }

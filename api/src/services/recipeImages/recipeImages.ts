@@ -129,4 +129,13 @@ export const deleteRecipeImage: MutationResolvers['deleteRecipeImage'] =
 export const RecipeImage: RecipeImageResolvers = {
   recipe: (_obj, { root }) =>
     db.recipeImage.findUnique({ where: { id: root.id } }).recipe(),
+  thumbnail: (_obj, { root }) => {
+    if (!root.url) {
+      return ''
+    }
+
+    const parts = root.url.split('/')
+    parts.splice(3, 0, 'resize=width:500')
+    return parts.join('/')
+  },
 }

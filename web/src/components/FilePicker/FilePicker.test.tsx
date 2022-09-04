@@ -6,7 +6,14 @@ describe('FilePicker', () => {
   it('renders successfully', () => {
     const text = 'Add Photo'
     expect(() => {
-      render(<FilePicker accept="image/*" onSuccess={jest.fn()} text={text} />)
+      render(
+        <FilePicker
+          accept="image/*"
+          onSuccess={jest.fn()}
+          text={text}
+          mode="first_pick"
+        />
+      )
     }).not.toThrow()
   })
 })

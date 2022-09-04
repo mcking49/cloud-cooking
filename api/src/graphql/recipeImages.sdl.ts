@@ -5,6 +5,7 @@ export const schema = gql`
     updatedAt: DateTime!
     recipe: Recipe
     recipeId: Int
+    thumbnail: String!
     url: String!
   }
 
