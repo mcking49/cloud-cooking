@@ -1,15 +1,15 @@
 import { render, screen } from '@redwoodjs/testing/web'
 
-import Form from '../Form'
+import CreateRecipeFormWrapper from 'src/lib/tests/components/CreateRecipeFormWrapper'
 
 import RecipeDetailsForm from './RecipeDetailsForm'
 
 describe('RecipeDetailsForm', () => {
   beforeEach(() => {
     render(
-      <Form>
+      <CreateRecipeFormWrapper>
         <RecipeDetailsForm />
-      </Form>
+      </CreateRecipeFormWrapper>
     )
   })
 

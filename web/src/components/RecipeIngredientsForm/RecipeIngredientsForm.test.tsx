@@ -1,14 +1,19 @@
-import { render } from '@redwoodjs/testing/web'
+import { render, screen } from '@redwoodjs/testing/web'
+
+import CreateRecipeFormWrapper from 'src/lib/tests/components/CreateRecipeFormWrapper'
 
 import RecipeIngredientsForm from './RecipeIngredientsForm'
 
-//   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
-
 describe('RecipeIngredientsForm', () => {
-  it('renders successfully', () => {
-    expect(() => {
-      render(<RecipeIngredientsForm />)
-    }).not.toThrow()
+  beforeEach(() => {
+    render(
+      <CreateRecipeFormWrapper>
+        <RecipeIngredientsForm />
+      </CreateRecipeFormWrapper>
+    )
+  })
+
+  it('should have a sub group name', () => {
+    expect(screen.getByText('Sub Group Name')).toBeInTheDocument()
   })
 })
