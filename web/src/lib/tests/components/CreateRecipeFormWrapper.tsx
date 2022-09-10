@@ -10,13 +10,13 @@ const DEFAULT_FORM: CreateRecipeInput = {
   categories: [],
   directionGroups: [
     {
-      directions: [],
+      directions: [''],
       name: '',
     },
   ],
   ingredientGroups: [
     {
-      ingredients: [],
+      ingredients: [''],
       name: '',
     },
   ],

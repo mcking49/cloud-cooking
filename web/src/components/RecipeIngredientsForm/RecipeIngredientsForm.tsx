@@ -1,15 +1,12 @@
-import { FormControl, FormLabel, Input, VStack } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 import { CreateRecipeInput } from 'types/graphql'
 
-import {
-  Label,
-  TextField,
-  useFieldArray,
-  useFormContext,
-} from '@redwoodjs/forms'
+import { useFieldArray, useFormContext } from '@redwoodjs/forms'
+
+import RecipeIngredientForm from '../RecipeIngredientForm'
 
 const RecipeIngredientsForm = () => {
-  const { control, formState } = useFormContext<CreateRecipeInput>()
+  const { control } = useFormContext<CreateRecipeInput>()
 
   const { fields } = useFieldArray({
     control,
@@ -19,26 +16,7 @@ const RecipeIngredientsForm = () => {
   return (
     <VStack gap={6}>
       {fields.map((field, index) => (
-        <FormControl
-          key={field.id}
-          isInvalid={!!formState.errors.ingredientGroups?.[index].name}
-          isDisabled={formState.isSubmitting}
-        >
-          <FormLabel as={Label} name={`ingredientGroups.${index}.name`}>
-            Sub Group Name
-          </FormLabel>
-
-          <Input
-            as={TextField}
-            name={`ingredientGroups.${index}.name`}
-            validation={{
-              required: {
-                value: true,
-                message: 'Please enter a name',
-              },
-            }}
-          />
-        </FormControl>
+        <RecipeIngredientForm key={field.id} ingredientIndex={index} />
       ))}
     </VStack>
   )
