@@ -51,7 +51,7 @@ const RecipeIngredientForm = ({ ingredientIndex }: Props) => {
   return (
     <>
       <FormControl
-        isInvalid={!!formState.errors.ingredientGroups?.[ingredientIndex].name}
+        isInvalid={!!formState.errors.ingredientGroups?.[ingredientIndex]?.name}
         isDisabled={formState.isSubmitting}
       >
         <FormLabel as={Label} name={`${ingredientKey}.name`}>

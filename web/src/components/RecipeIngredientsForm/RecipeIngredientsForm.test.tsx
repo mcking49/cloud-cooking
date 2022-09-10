@@ -13,7 +13,7 @@ describe('RecipeIngredientsForm', () => {
     )
   })
 
-  it('should have a sub group name', () => {
-    expect(screen.getByText('Sub Group Name')).toBeInTheDocument()
+  it('should have an add sub group button', () => {
+    expect(screen.getByText('+ Add Sub Group')).toBeInTheDocument()
   })
 })
