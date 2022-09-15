@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   HStack,
+  IconButton,
   Input,
   VStack,
 } from '@chakra-ui/react'
@@ -18,8 +19,6 @@ import {
   useFieldArray,
   useFormContext,
 } from '@redwoodjs/forms'
-
-import { IconButton } from '../buttons/IconButton'
 
 type Props = {
   directionIndex: number

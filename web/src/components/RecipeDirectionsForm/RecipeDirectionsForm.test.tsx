@@ -1,14 +1,19 @@
-import { render } from '@redwoodjs/testing/web'
+import { render, screen } from '@redwoodjs/testing/web'
+
+import CreateRecipeFormWrapper from 'src/lib/tests/components/CreateRecipeFormWrapper'
 
 import RecipeDirectionsForm from './RecipeDirectionsForm'
 
-//   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
-
 describe('RecipeDirectionsForm', () => {
-  it('renders successfully', () => {
-    expect(() => {
-      render(<RecipeDirectionsForm />)
-    }).not.toThrow()
+  beforeEach(() => {
+    render(
+      <CreateRecipeFormWrapper>
+        <RecipeDirectionsForm />
+      </CreateRecipeFormWrapper>
+    )
+  })
+
+  it('should have an add sub group button', () => {
+    expect(screen.getByText('+ Add Sub Group')).toBeInTheDocument()
   })
 })
