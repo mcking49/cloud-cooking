@@ -10,6 +10,7 @@ const Routes = () => {
       <Private unauthenticated="login" wrap={SideMenuLayout}>
         <Route path="/explore" page={ExplorePage} name="explore" />
         <Route path="/favourites" page={FavouritesPage} name="favourites" />
+        <Route path="/recipe/{id:Int}" page={RecipePage} name="recipe" />
       </Private>
 
       <Private unauthenticated="login" wrap={EditRecipeLayout}>

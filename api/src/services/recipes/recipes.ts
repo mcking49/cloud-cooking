@@ -104,7 +104,7 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
   }
 
   // Validates sourceURL
-  if (givenKeys.includes('sourceUrl')) {
+  if (givenKeys.includes('sourceUrl') && input.sourceUrl.length) {
     validate(input.sourceUrl, 'Source URL', {
       presence: {
         allowEmptyString: true,
@@ -121,8 +121,31 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
 
   return db.recipe.create({
     data: {
-      ...input,
-      userId: context.currentUser.id,
+      name: input.name,
+      categories: input.categories,
+      length: input.length,
+      servings: input.servings,
+      sourceUrl: input.sourceUrl,
+      user: {
+        connect: {
+          id: context.currentUser.id,
+        },
+      },
+      directionGroups: {
+        createMany: {
+          data: input.directionGroups,
+        },
+      },
+      ingredientGroups: {
+        createMany: {
+          data: input.ingredientGroups,
+        },
+      },
+      recipeImages: {
+        connect: {
+          id: input.recipeImageIds?.[0],
+        },
+      },
     },
   })
 }
