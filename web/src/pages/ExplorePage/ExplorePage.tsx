@@ -1,27 +1,37 @@
-import { Box } from '@chakra-ui/react'
+import { useState } from 'react'
 
-import { Link, routes } from '@redwoodjs/router'
+import { Heading } from '@chakra-ui/react'
+
 import { MetaTags } from '@redwoodjs/web'
 
+import CategoryFilters, {
+  ICategoryFilter,
+} from 'src/components/CategoryFilters/CategoryFilters'
+import RecipesCell from 'src/components/RecipesCell'
 import { SideMenuHeader } from 'src/layouts/SideMenuLayout'
 
 const ExplorePage = () => {
+  // TODO: use _activeRecipeFilter
+  const [_activeRecipeFilter, setActiveRecipeFilter] =
+    useState<ICategoryFilter | null>(null)
+
+  const onChangeFilter = (category: ICategoryFilter) => {
+    setActiveRecipeFilter(category)
+  }
+
   return (
     <>
       <MetaTags title="Explore" description="Explore page" />
 
-      <SideMenuHeader>hello world</SideMenuHeader>
+      <SideMenuHeader>
+        <Heading as="h1" fontWeight={400} lineHeight="1.2em" mt={4}>
+          Explore Recipes
+        </Heading>
 
-      <h1>ExplorePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/ExplorePage/ExplorePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>explore</code>, link to me with `
-        <Link to={routes.explore()}>Explore</Link>`
-      </p>
+        <CategoryFilters mt={4} onChangeFilter={onChangeFilter} />
+      </SideMenuHeader>
 
-      <Box height="2000px" bg="red"></Box>
+      <RecipesCell />
     </>
   )
 }
