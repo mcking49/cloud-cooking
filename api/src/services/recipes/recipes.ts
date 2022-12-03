@@ -119,7 +119,7 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
     })
   }
 
-  return db.recipe.create({
+  let newRecipe = await db.recipe.create({
     data: {
       name: input.name,
       categories: input.categories,
@@ -141,13 +141,25 @@ export const createRecipe: MutationResolvers['createRecipe'] = async ({
           data: input.ingredientGroups,
         },
       },
-      recipeImages: {
-        connect: {
-          id: input.recipeImageIds?.[0],
-        },
-      },
     },
   })
+
+  if (input.recipeImageIds.length) {
+    newRecipe = await db.recipe.update({
+      data: {
+        recipeImages: {
+          connect: {
+            id: input.recipeImageIds[0],
+          },
+        },
+      },
+      where: {
+        id: newRecipe.id,
+      },
+    })
+  }
+
+  return newRecipe
 }
 
 export const updateRecipe: MutationResolvers['updateRecipe'] = async ({
