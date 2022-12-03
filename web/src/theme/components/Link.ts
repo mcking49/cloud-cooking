@@ -20,7 +20,7 @@ const sideMenuActive: CSSObject = {
   background: 'white',
   fontWeight: 700,
   letterSpacing: '0.08em',
-  shadow: 'sideNav',
+  shadow: 'navMenu',
   width: 'calc(100% + 4px)',
 }
 

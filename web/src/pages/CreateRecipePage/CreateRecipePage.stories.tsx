@@ -1,7 +1,7 @@
 import CreateRecipePage from './CreateRecipePage'
 
-export const generated = (args) => {
-  return <CreateRecipePage {...args} />
+export const generated = () => {
+  return <CreateRecipePage />
 }
 
 export default { title: 'Pages/CreateRecipePage' }
