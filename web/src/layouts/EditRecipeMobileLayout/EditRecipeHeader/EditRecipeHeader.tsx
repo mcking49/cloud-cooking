@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Flex, Portal } from '@chakra-ui/react'
+import { Flex, Portal, useBreakpointValue } from '@chakra-ui/react'
 
 import { EditRecipeLayoutContext } from '../EditRecipeLayoutContext'
 
@@ -9,6 +9,12 @@ type Props = {
 }
 
 const EditRecipeHeader = ({ children }: Props) => {
+  const showHeader = useBreakpointValue({ base: true, xl: false })
+
+  if (!showHeader) {
+    return null
+  }
+
   return (
     <EditRecipeLayoutContext.Consumer>
       {({ headerRef }) => (
