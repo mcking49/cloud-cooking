@@ -50,16 +50,27 @@ const RecipeForm = () => {
     shouldFocusError: false,
   })
 
-  const [createRecipe] = useMutation<Partial<Recipe>>(CREATE_RECIPE_MUTATION)
+  const [createRecipe] = useMutation<{ createRecipe: Partial<Recipe> }>(
+    CREATE_RECIPE_MUTATION
+  )
 
   const onSubmit = async (data: CreateRecipeInput) => {
     if (data.categories.length) {
       data.categories = data.categories.filter((cat) => typeof cat === 'string')
     }
 
+    if (isNaN(data.length)) {
+      delete data.length
+    }
+
+    if (isNaN(data.servings)) {
+      delete data.servings
+    }
+
     try {
       const response = await createRecipe({ variables: { input: data } })
-      navigate(routes.recipe({ id: response.data.id }))
+
+      navigate(routes.recipe({ id: response.data.createRecipe.id }))
     } catch (error) {
       console.error(error)
     }
@@ -95,7 +106,16 @@ const RecipeForm = () => {
         </AccordionItem>
       </Accordion>
 
-      <Button type="submit">submit</Button>
+      {/* For some reason using `type="submit"` on the button results in a lot of "An invalid form control with name='categories[0]'" errors. */}
+      <Button
+        type="button"
+        onClick={formMethods.handleSubmit(onSubmit)}
+        width="full"
+        variant="solid"
+        colorScheme="green"
+      >
+        Submit
+      </Button>
     </Form>
   )
 }
