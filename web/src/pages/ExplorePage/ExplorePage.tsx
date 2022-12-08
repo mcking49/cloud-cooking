@@ -11,8 +11,7 @@ import RecipesCell from 'src/components/RecipesCell'
 import { SideMenuHeader } from 'src/layouts/SideMenuLayout'
 
 const ExplorePage = () => {
-  // TODO: use _activeRecipeFilter
-  const [_activeRecipeFilter, setActiveRecipeFilter] =
+  const [activeRecipeFilter, setActiveRecipeFilter] =
     useState<ICategoryFilter | null>(null)
 
   const onChangeFilter = (category: ICategoryFilter) => {
@@ -31,7 +30,9 @@ const ExplorePage = () => {
         <CategoryFilters mt={4} onChangeFilter={onChangeFilter} />
       </SideMenuHeader>
 
-      <RecipesCell />
+      <RecipesCell
+        category={activeRecipeFilter === 'ALL' ? null : activeRecipeFilter}
+      />
     </>
   )
 }

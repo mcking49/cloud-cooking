@@ -14,8 +14,8 @@ import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import RecipeCard from '../RecipeCard/RecipeCard'
 
 export const QUERY = gql`
-  query RecipesQuery {
-    recipes {
+  query RecipesQuery($category: RecipeCategory) {
+    recipes(category: $category) {
       id
       categories
       length
@@ -37,8 +37,6 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ recipes }: CellSuccessProps<RecipesQuery>) => {
-  console.log(recipes)
-
   return (
     <VStack width="full" alignItems="flex-start" spacing={6}>
       <HStack>
