@@ -54,6 +54,7 @@ export const Success = ({ recipes }: CellSuccessProps<RecipesQuery>) => {
           <ListItem key={recipe.id}>
             <RecipeCard
               imageUrl={recipe.recipeImages[0]?.thumbnail}
+              id={recipe.id}
               name={recipe.name}
               categories={recipe.categories}
               length={recipe.length}

@@ -3,6 +3,8 @@ import {
   HStack,
   Icon,
   Image,
+  LinkBox,
+  LinkOverlay,
   Tag,
   Text,
   VStack,
@@ -11,27 +13,33 @@ import { capitalize } from 'lodash/fp'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { RecipeCategory } from 'types/graphql'
 
+import { Link, routes } from '@redwoodjs/router'
+
 type RecipeCardProps = {
-  imageUrl: string
-  name: string
   categories: RecipeCategory[]
+  id: number
+  imageUrl: string
   length?: number
+  name: string
 }
 
 const RecipeCard = ({
   categories,
+  id,
   imageUrl,
-  name,
   length,
+  name,
 }: RecipeCardProps) => {
   return (
-    <VStack
+    <LinkBox
+      display="flex"
+      flexDir="column"
       as="article"
       width="full"
       borderRadius="4px"
       backgroundColor="white"
       overflow="hidden"
-      spacing={0}
+      gap={0}
     >
       {imageUrl && (
         <Image
@@ -53,6 +61,16 @@ const RecipeCard = ({
         >
           {name}
         </Heading>
+        <LinkOverlay
+          as={Link}
+          to={routes.recipe({ id })}
+          fontFamily="PT Sans"
+          fontSize="16px"
+          lineHeight="1.2em"
+          fontWeight={400}
+        >
+          {name}
+        </LinkOverlay>
 
         <HStack>
           {categories.map((category) => (
@@ -83,7 +101,7 @@ const RecipeCard = ({
           )}
         </HStack>
       </VStack>
-    </VStack>
+    </LinkBox>
   )
 }
 
