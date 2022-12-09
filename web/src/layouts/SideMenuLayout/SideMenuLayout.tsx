@@ -131,7 +131,13 @@ export const SideMenuLayout: React.FC = ({ children }) => {
               </HStack>
 
               {/* Header slot container. Children from <SideMenuHeader>{children}</SideMenuHeader> get Portalled here */}
-              <Box flexGrow={1} width="full" ref={headerRef} />
+              <Box
+                flexGrow={1}
+                width="full"
+                height="full"
+                ref={headerRef}
+                __css={{ '> div': { width: 'full', height: 'full' } }}
+              />
             </VStack>
           </Box>
 
