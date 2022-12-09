@@ -34,7 +34,13 @@ const RecipeCard = ({
       spacing={0}
     >
       {imageUrl && (
-        <Image src={imageUrl} alt={name} boxSize="152px" objectFit="cover" />
+        <Image
+          src={imageUrl}
+          alt={name}
+          height="152px"
+          width="full"
+          objectFit="cover"
+        />
       )}
 
       <VStack padding={3} width="full" alignItems="flex-start">
