@@ -94,7 +94,7 @@ const RecipeCard = ({
             <>
               <Icon as={AiOutlineClockCircle} h={2} w={2} />
 
-              <Text variant="hint" as="caption" fontSize="6px" color="blue.800">
+              <Text variant="hint" fontSize="6px" color="blue.800">
                 {length} mins
               </Text>
             </>
