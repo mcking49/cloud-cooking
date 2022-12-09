@@ -22,12 +22,13 @@ export const RECIPE_CATEGORIES: readonly RecipeCategory[] = [
   'SNACK',
 ]
 
-export const recipes: QueryResolvers['recipes'] = async () => {
+export const recipes: QueryResolvers['recipes'] = async ({ category }) => {
   requireAuth()
 
   return db.recipe.findMany({
     where: {
       userId: context.currentUser.id,
+      ...(category ? { categories: { has: category } } : {}),
     },
   })
 }
