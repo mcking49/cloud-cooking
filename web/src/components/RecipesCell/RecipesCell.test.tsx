@@ -1,5 +1,6 @@
-import { render, screen } from '@redwoodjs/testing/web'
-import { Loading, Empty, Failure, Success } from './RecipesCell'
+import { render } from '@redwoodjs/testing/web'
+
+import { Empty, Failure, Loading, Success } from './RecipesCell'
 import { standard } from './RecipesCell.mock'
 
 // Generated boilerplate tests do not account for all circumstances
