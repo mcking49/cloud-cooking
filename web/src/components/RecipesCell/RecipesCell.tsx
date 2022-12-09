@@ -49,7 +49,12 @@ export const Success = ({ recipes }: CellSuccessProps<RecipesQuery>) => {
         </Text>
       </HStack>
 
-      <SimpleGrid columns={2} as={List} width="full" gap={3}>
+      <SimpleGrid
+        columns={{ base: 2, md: 3, lg: 4, xl: 5 }}
+        as={List}
+        width="full"
+        gap={3}
+      >
         {recipes.map((recipe) => (
           <ListItem key={recipe.id}>
             <RecipeCard
